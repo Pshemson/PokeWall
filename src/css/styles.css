@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3, h4, h5 {
+  font-weight: 300; }
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto; }
+
+.container:after, .container:before {
+  clear: both;
+  display: table;
+  content: ''; }
+
+.searchContainer {
+  text-align: center;
+  padding: 5px;
+  background: green; }
+  @media (min-width: 768px) {
+    .searchContainer {
+      padding: 20px; } }
+
+.pokemonContainer {
+  background: greenyellow;
+  position: fixed;
+  padding: 18px; }
+
+/*# sourceMappingURL=styles.css.map */

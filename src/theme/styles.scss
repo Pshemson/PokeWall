@@ -1,0 +1,62 @@
+//Mixins
+@mixin small {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+
+//Styles
+* {
+ box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0
+}
+h1, h2, h3, h4, h5 {
+  font-weight: 300;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  @extend %clearfix
+}
+
+%clearfix {
+  &:after, &:before {
+    clear: both;
+    display: table;
+    content: '';
+  }
+}
+
+// Component Search
+.searchContainer {
+  text-align: center;
+  padding: 5px;
+  background: green;
+  @include small {
+    padding: 20px;
+  }
+}
+
+//Pokemon Container
+//Popap z info o Pokemonach
+
+.pokemonContainer {
+  background: greenyellow;
+  position: fixed;
+  padding: 18px;
+}
+
+
+//Przycisk do wyłączania popapa
+.pokemonContainer {
+
+}
+
+
