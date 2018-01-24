@@ -21,7 +21,8 @@ h1, h2, h3, h4, h5 {
 .searchContainer {
   text-align: center;
   padding: 5px;
-  background: green; }
+  background: green;
+  opacity: 0.9; }
   @media (min-width: 768px) {
     .searchContainer {
       padding: 20px; } }
@@ -29,6 +30,57 @@ h1, h2, h3, h4, h5 {
 .pokemonContainer {
   background: greenyellow;
   position: fixed;
-  padding: 18px; }
+  padding: 18px;
+  border: 2px solid grey;
+  border-radius: 12px; }
+
+.pokemonContainer span {
+  float: right;
+  font-size: 30px;
+  cursor: pointer; }
+
+.pokemonContainer span:hover {
+  float: right;
+  font-size: 30px;
+  color: red;
+  font-weight: 600;
+  animation: 1s skret linear infinite alternate; }
+
+@-webkit-keyframes skret {
+  0% {
+    transform: skew(-10deg); }
+  20% {
+    transform: skew(5deg); }
+  40% {
+    transform: skew(10deg); }
+  60% {
+    transform: skew(15deg);
+    background-color: coral; }
+  80% {
+    transform: skew(20deg);
+    background-color: coral; } }
+.footerContainer {
+  text-align: center;
+  padding: 5px;
+  background: green; }
+  @media (min-width: 768px) {
+    .footerContainer {
+      padding: 20px; } }
+
+.headerContainer {
+  text-align: center;
+  padding: 5px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: url("../images/background3.png"); }
+
+.headerContainer h1 {
+  font-size: 50px;
+  font-weight: bolder; }
+
+.headerContainer p {
+  font-size: 20px;
+  font-weight: bold;
+  color: black; }
 
 /*# sourceMappingURL=styles.css.map */

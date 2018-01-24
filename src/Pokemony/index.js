@@ -5,7 +5,8 @@ class Pokemony extends React.Component {
     constructor() {
         super();
         this.state = {
-            pokemon: {}
+            pokemon: {},
+            showpopup: true,
         };
     }
 
@@ -54,14 +55,24 @@ class Pokemony extends React.Component {
             return <h1>Nie ma żadnych Pokemonów jeszcze, poczekaj...</h1>
         }
 
+
+        const style = {
+            cursor: 'pointer',
+            border: '1px solid grey',
+            display: 'block',
+            height: '33px',
+        }
+
+
         return (
-            <div>
+            <div className="container">
                 <h1>Lista Pokemonów</h1>
                 <p>Kliknij na pokemona, aby uzyskać więcej informacji.</p>
                <Pokemon pokemonInfo={this.state.pokemon} />
-                <ul>
-                    {pokemonyLista.map((kutas, i) => {
-                        return <li key={i} onClick={event => pobierzPokemona(kutas.url)}>{kutas.name}</li>;
+                <ul style={{backgroundColor: '#69FF23'}}>
+                    {pokemonyLista.map((ele, i) => {
+                        return <li style={style}
+                                   key={i} onClick={event => pobierzPokemona(ele.url)}>{ele.name}</li>;
                     })}
                 </ul>
             </div>

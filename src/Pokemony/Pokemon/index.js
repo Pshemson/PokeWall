@@ -10,7 +10,8 @@ class Pokemon extends React.Component {
 
         return (
             <div className="pokemonContainer">
-                <h2>Informacje:</h2>
+                <span>X</span>
+                <h2 style={{margin: '0'}}>Informacje:</h2>
                 <img src={this.props.pokemonInfo.obrazek} />
                 <ul>
                     <li>Nazwa: {this.props.pokemonInfo.name}</li>
@@ -22,8 +23,6 @@ class Pokemon extends React.Component {
                     <li>Wielkość: {this.props.pokemonInfo.pokeHeight}</li>
                     <li>Doświadczenie początkowe: {this.props.pokemonInfo.baseExp}</li>
                     <li>Typ: {this.props.pokemonInfo.typesPokeFirst} {this.props.pokemonInfo.typesPokeSecond}</li>
-
-
                 </ul>
             </div>
         );

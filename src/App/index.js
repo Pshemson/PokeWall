@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from '../Header';
 import Map from '../Map';
 import Pokemony from '../Pokemony';
+import Footer from '../Footer';
 
 document.addEventListener('DOMContentLoaded', () => {
     class App extends React.Component {
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div>
                     <Header />
                     <Pokemony pokemonyLista={this.state.pokemony} />
-                    <Map />
+                    <Footer />
                 </div>
             );
         }
