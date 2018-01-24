@@ -29,7 +29,7 @@ class Pokemon extends React.Component {
             <div style={popap} className="pokemonContainer">
                 <span onClick={this.handleClick}>X</span>
                 <h2 style={{margin: '0'}}>Informacje:</h2>
-                <img src={this.props.pokemonInfo.obrazek} />
+                <img style={{height: '200px'}} src={this.props.pokemonInfo.obrazek} />
                 <ul>
                     <li>Nazwa: {this.props.pokemonInfo.name}</li>
                     <li>Szybkość: {this.props.pokemonInfo.speedPoke}</li>

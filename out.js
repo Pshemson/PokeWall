@@ -22596,7 +22596,7 @@ var Pokemon = function (_React$Component) {
                     { style: { margin: '0' } },
                     'Informacje:'
                 ),
-                _react2.default.createElement('img', { src: this.props.pokemonInfo.obrazek }),
+                _react2.default.createElement('img', { style: { height: '200px' }, src: this.props.pokemonInfo.obrazek }),
                 _react2.default.createElement(
                     'ul',
                     null,

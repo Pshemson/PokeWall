@@ -3,7 +3,9 @@
 
 html, body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px; }
 
 h1, h2, h3, h4, h5 {
   font-weight: 300; }
@@ -21,14 +23,14 @@ h1, h2, h3, h4, h5 {
 .searchContainer {
   text-align: center;
   padding: 5px;
-  background: green;
+  background: #35e474;
   opacity: 0.9; }
   @media (min-width: 768px) {
     .searchContainer {
       padding: 20px; } }
 
 .pokemonContainer {
-  background: greenyellow;
+  background: #57ff7b;
   position: fixed;
   padding: 18px;
   border: 2px solid grey;
@@ -76,7 +78,8 @@ h1, h2, h3, h4, h5 {
 
 .headerContainer h1 {
   font-size: 50px;
-  font-weight: bolder; }
+  font-weight: bolder;
+  color: #595959; }
 
 .headerContainer p {
   font-size: 20px;
