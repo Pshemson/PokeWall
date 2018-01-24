@@ -9614,10 +9614,6 @@ var _Header = __webpack_require__(184);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Map = __webpack_require__(186);
-
-var _Map2 = _interopRequireDefault(_Map);
-
 var _Pokemony = __webpack_require__(188);
 
 var _Pokemony2 = _interopRequireDefault(_Pokemony);
@@ -9643,8 +9639,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
             var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
+            _this.pobierzPokemona = function (url) {
+                _this.setState({
+                    pokemon: {},
+                    showPopup: true
+                });
+                fetch(url).then(function (r) {
+                    return r.json();
+                }).then(function (data) {
+
+                    var danePokemona = {
+                        name: data.name,
+                        wagaPokemona: data.weight,
+                        obrazek: data.sprites.front_shiny,
+                        speedPoke: data.stats[0].base_stat,
+                        defense: data.stats[3].base_stat,
+                        attack: data.stats[4].base_stat,
+                        healthPoints: data.stats[5].base_stat,
+                        typesPokeFirst: data.types[0].type.name,
+                        baseExp: data.base_experience,
+                        pokeHeight: data.height
+                    };
+
+                    _this.setState({
+                        pokemon: danePokemona
+                    });
+                });
+            };
+
+            _this.closePopup = function () {
+                _this.setState({
+                    showPopup: false
+                });
+            };
+
             _this.state = {
-                pokemony: []
+                pokemony: [],
+                searchValue: '',
+                filteredPokemons: [],
+                pokemon: {},
+                showPopup: false
             };
             return _this;
         }
@@ -9654,7 +9688,7 @@ document.addEventListener('DOMContentLoaded', function () {
             value: function componentDidMount() {
                 var _this2 = this;
 
-                fetch('https://pokeapi.co/api/v2/pokemon/?limit=1000').then(function (r) {
+                fetch('https://pokeapi.co/api/v2/pokemon/?limit=100').then(function (r) {
                     return r.json();
                 }).then(function (data) {
                     var pobranePokemony = data.results.map(function (e) {
@@ -9671,11 +9705,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }, {
             key: 'render',
             value: function render() {
+                var _this3 = this;
+
                 return _react2.default.createElement(
                     'div',
                     null,
-                    _react2.default.createElement(_Header2.default, null),
-                    _react2.default.createElement(_Pokemony2.default, { pokemonyLista: this.state.pokemony }),
+                    _react2.default.createElement(_Header2.default, {
+                        handleSearchChange: function handleSearchChange(event) {
+                            return _this3.handleSearchChange(event);
+                        },
+                        filteredPokemons: this.state.filteredPokemons
+                    }),
+                    _react2.default.createElement(_Pokemony2.default, {
+                        pokemon: this.state.pokemon,
+                        getPokemon: this.pobierzPokemona,
+                        pokemonyLista: this.state.pokemony,
+                        showPopup: this.state.showPopup,
+                        closePopup: this.closePopup
+                    }),
                     _react2.default.createElement(_Footer2.default, null)
                 );
             }
@@ -22253,7 +22300,7 @@ var Search = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 "div",
-                { className: "searchContainer" },
+                { className: "container searchContainer" },
                 _react2.default.createElement("input", { placeholder: "Wpisz nazw\u0119..." })
             );
         }
@@ -22265,119 +22312,8 @@ var Search = function (_React$Component) {
 exports.default = Search;
 
 /***/ }),
-/* 186 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(13);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Legenda = __webpack_require__(187);
-
-var _Legenda2 = _interopRequireDefault(_Legenda);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Map = function (_React$Component) {
-    _inherits(Map, _React$Component);
-
-    function Map() {
-        _classCallCheck(this, Map);
-
-        return _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).apply(this, arguments));
-    }
-
-    _createClass(Map, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    'Mapa'
-                ),
-                _react2.default.createElement(_Legenda2.default, null)
-            );
-        }
-    }]);
-
-    return Map;
-}(_react2.default.Component);
-
-exports.default = Map;
-
-/***/ }),
-/* 187 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(13);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Legenda = function (_React$Component) {
-    _inherits(Legenda, _React$Component);
-
-    function Legenda() {
-        _classCallCheck(this, Legenda);
-
-        return _possibleConstructorReturn(this, (Legenda.__proto__ || Object.getPrototypeOf(Legenda)).apply(this, arguments));
-    }
-
-    _createClass(Legenda, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'h2',
-                    null,
-                    'Legenda'
-                )
-            );
-        }
-    }]);
-
-    return Legenda;
-}(_react2.default.Component);
-
-exports.default = Legenda;
-
-/***/ }),
+/* 186 */,
+/* 187 */,
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22412,67 +22348,17 @@ var Pokemony = function (_React$Component) {
     function Pokemony() {
         _classCallCheck(this, Pokemony);
 
-        var _this = _possibleConstructorReturn(this, (Pokemony.__proto__ || Object.getPrototypeOf(Pokemony)).call(this));
-
-        _this.state = {
-            pokemon: {}
-            //showpopup: true,
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (Pokemony.__proto__ || Object.getPrototypeOf(Pokemony)).apply(this, arguments));
     }
 
     _createClass(Pokemony, [{
         key: 'render',
         value: function render() {
-            var _this2 = this;
+            var _props = this.props,
+                _props$pokemonyLista = _props.pokemonyLista,
+                pokemonyLista = _props$pokemonyLista === undefined ? [] : _props$pokemonyLista,
+                getPokemon = _props.getPokemon;
 
-            var _props$pokemonyLista = this.props.pokemonyLista,
-                pokemonyLista = _props$pokemonyLista === undefined ? [] : _props$pokemonyLista;
-
-
-            var pobierzPokemona = function pobierzPokemona(url) {
-                console.log(url);
-                fetch(url).then(function (r) {
-                    return r.json();
-                }).then(function (data) {
-
-                    // fetch(data.game_indices[0].version.url)
-                    //     .then(r => r.json())
-                    //     .then(data => {
-                    //         const nazwa =  data.names[0].name;
-                    //         this.setState({nazwaChinska: nazwa});
-                    //     });
-
-                    var danePokemona = {
-                        name: data.name,
-                        wagaPokemona: data.weight,
-                        obrazek: data.sprites.front_shiny,
-                        speedPoke: data.stats[0].base_stat,
-                        defense: data.stats[3].base_stat,
-                        attack: data.stats[4].base_stat,
-                        healthPoints: data.stats[5].base_stat,
-                        typesPokeFirst: data.types[0].type.name,
-                        typesPokeSecond: data.types[1].type.name,
-                        baseExp: data.base_experience,
-                        pokeHeight: data.height
-
-                        // chinskaNazwa: this.state.nazwaChinska,
-                    };
-                    _this2.setState({
-                        pokemon: danePokemona
-                    });
-                });
-            };
-
-            //handleClick = (e) => {
-            //    this.setState({
-            //        showpopup: false,
-            //    })
-            //}
-            //
-            //const popap = {
-            //    showpopup: this.state.showpopup ? 'block' : 'none',
-            //}
 
             if (!pokemonyLista.length) {
                 return _react2.default.createElement(
@@ -22481,13 +22367,6 @@ var Pokemony = function (_React$Component) {
                     'Wgrywanie pokemon\xF3w, prosz\u0119 czekaj...'
                 );
             }
-
-            var style = {
-                cursor: 'pointer',
-                border: '1px solid grey',
-                display: 'block',
-                height: '33px'
-            };
 
             return _react2.default.createElement(
                 'div',
@@ -22502,16 +22381,15 @@ var Pokemony = function (_React$Component) {
                     null,
                     'Kliknij na pokemona, aby uzyska\u0107 wi\u0119cej informacji.'
                 ),
-                _react2.default.createElement(_Pokemon2.default, { pokemonInfo: this.state.pokemon }),
+                _react2.default.createElement(_Pokemon2.default, { pokemonInfo: this.props.pokemon, showPopup: this.props.showPopup, closePopup: this.props.closePopup }),
                 _react2.default.createElement(
                     'ul',
-                    { style: { backgroundColor: '#69FF23' } },
+                    { className: 'pokemonsList' },
                     pokemonyLista.map(function (ele, i) {
                         return _react2.default.createElement(
                             'li',
-                            { style: style,
-                                key: i, onClick: function onClick(event) {
-                                    return pobierzPokemona(ele.url);
+                            { key: i, onClick: function onClick(event) {
+                                    return getPokemon(ele.url);
                                 } },
                             ele.name
                         );
@@ -22557,104 +22435,97 @@ var Pokemon = function (_React$Component) {
     function Pokemon() {
         _classCallCheck(this, Pokemon);
 
-        var _this = _possibleConstructorReturn(this, (Pokemon.__proto__ || Object.getPrototypeOf(Pokemon)).call(this));
-
-        _this.handleClick = function (e) {
-            _this.setState({
-                showpopup: false
-            });
-        };
-
-        _this.state = {
-            showpopup: true
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (Pokemon.__proto__ || Object.getPrototypeOf(Pokemon)).apply(this, arguments));
     }
 
     _createClass(Pokemon, [{
         key: 'render',
         value: function render() {
-
-            if (!this.props.pokemonInfo.wagaPokemona) {
+            if (!this.props.showPopup) {
                 return null;
             }
 
-            var popap = {
-                display: this.state.showpopup ? 'block' : 'none'
-            };
-
             return _react2.default.createElement(
                 'div',
-                { style: popap, className: 'pokemonContainer' },
+                { className: 'pokemonContainer' },
                 _react2.default.createElement(
                     'span',
-                    { onClick: this.handleClick },
+                    { onClick: this.props.closePopup },
                     'X'
                 ),
-                _react2.default.createElement(
-                    'h2',
-                    { style: { margin: '0' } },
-                    'Informacje:'
+                !this.props.pokemonInfo.obrazek && _react2.default.createElement(
+                    'h4',
+                    null,
+                    'Prosimy o cierpliwo\u015B\u0107...'
                 ),
-                _react2.default.createElement('img', { style: { height: '200px' }, src: this.props.pokemonInfo.obrazek }),
-                _react2.default.createElement(
-                    'ul',
+                this.props.pokemonInfo.obrazek && _react2.default.createElement(
+                    'div',
                     null,
                     _react2.default.createElement(
-                        'li',
-                        null,
-                        'Nazwa: ',
-                        this.props.pokemonInfo.name
+                        'h2',
+                        { style: { margin: '0' } },
+                        'Informacjesdfsdf:'
                     ),
+                    _react2.default.createElement('img', { style: { height: '200px' }, src: this.props.pokemonInfo.obrazek }),
                     _react2.default.createElement(
-                        'li',
+                        'ul',
                         null,
-                        'Szybko\u015B\u0107: ',
-                        this.props.pokemonInfo.speedPoke
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Ochrona: ',
-                        this.props.pokemonInfo.defense
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Si\u0142a ataku: ',
-                        this.props.pokemonInfo.attack
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Punkty zdrowia: ',
-                        this.props.pokemonInfo.healthPoints
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Waga: ',
-                        this.props.pokemonInfo.wagaPokemona
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Wielko\u015B\u0107: ',
-                        this.props.pokemonInfo.pokeHeight
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Do\u015Bwiadczenie pocz\u0105tkowe: ',
-                        this.props.pokemonInfo.baseExp
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Typ: ',
-                        this.props.pokemonInfo.typesPokeFirst,
-                        ' ',
-                        this.props.pokemonInfo.typesPokeSecond
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Nazwa: ',
+                            this.props.pokemonInfo.name
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Szybko\u015B\u0107: ',
+                            this.props.pokemonInfo.speedPoke
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Ochrona: ',
+                            this.props.pokemonInfo.defense
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Si\u0142a ataku: ',
+                            this.props.pokemonInfo.attack
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Punkty zdrowia: ',
+                            this.props.pokemonInfo.healthPoints
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Waga: ',
+                            this.props.pokemonInfo.wagaPokemona
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Wielko\u015B\u0107: ',
+                            this.props.pokemonInfo.pokeHeight
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Do\u015Bwiadczenie pocz\u0105tkowe: ',
+                            this.props.pokemonInfo.baseExp
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Typ: ',
+                            this.props.pokemonInfo.typesPokeFirst,
+                            ' ',
+                            this.props.pokemonInfo.typesPokeSecond
+                        )
                     )
                 )
             );

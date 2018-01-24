@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from '../Header';
-import Map from '../Map';
 import Pokemony from '../Pokemony';
 import Footer from '../Footer';
 
@@ -11,11 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
             super();
             this.state = {
                 pokemony: [],
+                searchValue: '',
+                filteredPokemons: [],
+                pokemon: {},
+                showPopup: false,
             };
         }
 
         componentDidMount() {
-            fetch(`https://pokeapi.co/api/v2/pokemon/?limit=1000`)
+            fetch(`https://pokeapi.co/api/v2/pokemon/?limit=100`)
                 .then(r => r.json())
                 .then(data => {
                     const pobranePokemony = data.results.map((e) => {
@@ -30,11 +33,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         }
 
+        pobierzPokemona = (url) => {
+            this.setState({
+                pokemon: {},
+                showPopup: true,
+            });
+            fetch(url)
+                .then(r => r.json())
+                .then(data => {
+
+                    const danePokemona =  {
+                        name: data.name,
+                        wagaPokemona: data.weight,
+                        obrazek: data.sprites.front_shiny,
+                        speedPoke: data.stats[0].base_stat,
+                        defense: data.stats[3].base_stat,
+                        attack: data.stats[4].base_stat,
+                        healthPoints: data.stats[5].base_stat,
+                        typesPokeFirst: data.types[0].type.name,
+                        baseExp: data.base_experience,
+                        pokeHeight: data.height,
+                    };
+
+                    this.setState({
+                        pokemon: danePokemona,
+                    });
+                });
+        };
+        closePopup = () => {
+            this.setState({
+                showPopup: false,
+            })
+        };
+
+
         render() {
             return (
                 <div>
-                    <Header />
-                    <Pokemony pokemonyLista={this.state.pokemony} />
+                    <Header
+                        handleSearchChange={event => this.handleSearchChange(event)}
+                        filteredPokemons={this.state.filteredPokemons}
+                    />
+                    <Pokemony
+                        pokemon={this.state.pokemon}
+                        getPokemon={this.pobierzPokemona}
+                        pokemonyLista={this.state.pokemony}
+                        showPopup={this.state.showPopup}
+                        closePopup={this.closePopup}
+                    />
                     <Footer />
                 </div>
             );

@@ -28,18 +28,35 @@ h1, h2, h3, h4, h5 {
   @media (min-width: 768px) {
     .searchContainer {
       padding: 20px; } }
+  .searchContainer input {
+    padding: 2px 14px;
+    line-height: 30px; }
+
+.pokemonsList {
+  padding: 0;
+  list-style: none; }
+  .pokemonsList li {
+    cursor: pointer;
+    border: 1px solid grey;
+    display: block;
+    padding: 20px;
+    background: #69FF23;
+    transition: 1s all; }
+    .pokemonsList li:hover {
+      background: #3cbc00; }
 
 .pokemonContainer {
   background: #57ff7b;
   position: fixed;
   padding: 18px;
   border: 2px solid grey;
-  border-radius: 12px; }
-
-.pokemonContainer span {
-  float: right;
-  font-size: 30px;
-  cursor: pointer; }
+  border-radius: 12px;
+  top: 20%;
+  right: 1%; }
+  .pokemonContainer span {
+    float: right;
+    font-size: 30px;
+    cursor: pointer; }
 
 .pokemonContainer span:hover {
   float: right;
@@ -78,12 +95,13 @@ h1, h2, h3, h4, h5 {
 
 .headerContainer h1 {
   font-size: 50px;
-  font-weight: bolder;
+  font-weight: bold;
   color: #595959; }
 
 .headerContainer p {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: bold;
-  color: black; }
+  color: white;
+  text-shadow: 3px 1px 9px #000, 4px 7px 9px #69ff23; }
 
 /*# sourceMappingURL=styles.css.map */

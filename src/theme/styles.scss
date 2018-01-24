@@ -46,9 +46,29 @@ h1, h2, h3, h4, h5 {
   @include small {
     padding: 20px;
   }
+  input {
+    padding: 2px 14px;
+    line-height: 30px;
+  }
 }
 
+// Pokemony
 
+.pokemonsList {
+  padding: 0;
+  list-style: none;
+  li {
+    cursor: pointer;
+    border: 1px solid grey;
+    display: block;
+    padding: 20px;
+    background: #69FF23;
+    transition: 1s all;
+    &:hover {
+      background: darken(#69FF23, 20%)
+    }
+  }
+}
 
 //Pokemon component
 //Popap z info o Pokemonach
@@ -59,13 +79,13 @@ h1, h2, h3, h4, h5 {
   padding: 18px;
   border: 2px solid grey;
   border-radius: 12px;
-
-}
-
-.pokemonContainer span {
-  float: right;
-  font-size: 30px;
-  cursor: pointer;
+  top: 20%;
+  right: 1%;
+  span {
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+  }
 }
 
 .pokemonContainer span:hover {
@@ -123,12 +143,13 @@ h1, h2, h3, h4, h5 {
 
 .headerContainer h1 {
   font-size: 50px;
-  font-weight: bolder;
+  font-weight: bold;
   color: #595959;
 }
 
 .headerContainer p {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: bold;
-  color: black;
+  color: white;
+  text-shadow: 3px 1px 9px #000, 4px 7px 9px #69ff23
 }
