@@ -6,7 +6,7 @@ class Pokemony extends React.Component {
         super();
         this.state = {
             pokemon: {},
-            showpopup: true,
+            //showpopup: true,
         };
     }
 
@@ -49,10 +49,18 @@ class Pokemony extends React.Component {
                 });
         };
 
-
+        //handleClick = (e) => {
+        //    this.setState({
+        //        showpopup: false,
+        //    })
+        //}
+//
+        //const popap = {
+        //    showpopup: this.state.showpopup ? 'block' : 'none',
+        //}
 
         if (!pokemonyLista.length) {
-            return <h1>Nie ma żadnych Pokemonów jeszcze, poczekaj...</h1>
+            return <h1>Wgrywanie pokemonów, proszę czekaj...</h1>
         }
 
 

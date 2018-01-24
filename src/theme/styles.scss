@@ -40,7 +40,6 @@ h1, h2, h3, h4, h5 {
   padding: 5px;
   background: green;
   opacity: 0.9;
-
   @include small {
     padding: 20px;
   }
@@ -97,11 +96,6 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-
-//Przycisk do wyłączania popapa
-.pokemonContainer {
-
-}
 
 //Footer component
 .footerContainer {

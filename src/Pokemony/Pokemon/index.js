@@ -1,16 +1,33 @@
 import React from 'react';
 
 class Pokemon extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            showpopup: true,
+        };
+    }
+
+
+    handleClick = (e) => {
+        this.setState({
+            showpopup: false,
+        })
+    }
+
     render() {
 
         if (!this.props.pokemonInfo.wagaPokemona) {
             return null;
         }
 
+        const popap = {
+            display: this.state.showpopup ? 'block' : 'none',
+        }
 
         return (
-            <div className="pokemonContainer">
-                <span>X</span>
+            <div style={popap} className="pokemonContainer">
+                <span onClick={this.handleClick}>X</span>
                 <h2 style={{margin: '0'}}>Informacje:</h2>
                 <img src={this.props.pokemonInfo.obrazek} />
                 <ul>
