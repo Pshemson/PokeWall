@@ -9643,6 +9643,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
             var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
+            _this.handleSearchChange = function (event) {
+                var searchValue = event.target.value;
+                var pokemonsy = _this.state.pokemony.slice();
+
+                var filteredPokemons = pokemony.filter(function (e) {
+                    return e.name.toLowerCase().includes(searchValue.toLowerCase());
+                }).map(function (e) {
+                    return e.name;
+                });
+
+                _this.setState({
+                    searchValue: searchValue,
+                    filteredPokemons: filteredPokemons,
+                    showPotentialPokemons: true
+                });
+            };
+
+            _this.getPokemonPropositions = function () {
+                if (_this.state.searchValue.length >= 3 && _this.state.potentialCountries.length > 0) {
+                    var pokemonPropositions = _this.state.filteredPokemons.map(function (country, i, array) {
+                        return _react2.default.createElement(
+                            'li',
+                            {
+                                onClick: function onClick(event) {
+                                    return _this.handlePokemonClick(pokemon, i);
+                                },
+                                key: pokemon + i },
+                            pokemony
+                        );
+                    });
+                    return pokemonPropositions;
+                } else if (_this.state.searchValue.length >= 3 && _this.state.filteredPokemons.length < 1) {
+                    console.log("Nie ma takiego pokemona.");
+                    var noPokemon = _react2.default.createElement(
+                        'li',
+                        null,
+                        'B\u0142\u0119dna nazwa!'
+                    );
+                    return noPokemon;
+                }
+            };
+
             _this.pobierzPokemona = function (url) {
                 _this.setState({
                     pokemon: {},
@@ -9709,45 +9751,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             ////Wyszukiwarka (while typing)
-            //handleSearchChange = event => {
-            //    const searchValue = event.target.value;
-            //    const pokemonsy = this.state.pokemony.slice();
-            //
-            //    const filteredPokemons = pokemony.filter((e) => {
-            //        return e.name.toLowerCase().includes(searchValue.toLowerCase());
-            //    }).map(function(e) {
-            //        return e.name
-            //    });
-            //
-            //    this.setState({
-            //        searchValue : searchValue,
-            //        filteredPokemons : filteredPokemons,
-            //        showPotentialPokemons: true,
-            //    });
-            //};
 
-            ////wyszukiwanie cd
-            //getPokemonPropositions = () => {
-            //    if (this.state.searchValue.length >= 3 && this.state.potentialCountries.length > 0) {
-            //        const pokemonPropositions = this.state.filteredPokemons.map((country, i, array) => {
-            //            return <li
-            //                onClick={event => this.handlePokemonClick(pokemon, i)}
-            //                key={pokemon + i}>
-            //                {pokemony}
-            //            </li>;
-            //        });
-            //        return pokemonPropositions
-            //    } else if (this.state.searchValue.length >= 3 && this.state.filteredPokemons.length < 1) {
-            //        console.log("Nie ma takiego pokemona.");
-            //        const noPokemon = (
-            //            <li>
-            //                Błędna nazwa!
-            //            </li>
-            //        );
-            //        return noPokemon
-            //    }
-            //};
 
+            //wyszukiwanie cd
 
         }, {
             key: 'render',
@@ -22688,18 +22694,54 @@ var ScrollBtn = function (_React$Component) {
     function ScrollBtn() {
         _classCallCheck(this, ScrollBtn);
 
-        return _possibleConstructorReturn(this, (ScrollBtn.__proto__ || Object.getPrototypeOf(ScrollBtn)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (ScrollBtn.__proto__ || Object.getPrototypeOf(ScrollBtn)).call(this));
+
+        _this.state = {
+            showButton: false
+        };
+        return _this;
     }
 
     _createClass(ScrollBtn, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            window.onscroll = function () {
+                return _this2.scrollFunction();
+            };
+        }
+    }, {
+        key: "scrollFunction",
+        value: function scrollFunction() {
+            if (document.body.scrollTop > 222 || document.documentElement.scrollTop > 222) {
+                this.setState({
+                    showButton: true
+                });
+            } else {
+                this.setState({
+                    showButton: false
+                });
+            }
+        }
+    }, {
+        key: "topFunction",
+        value: function topFunction() {
+            document.documentElement.scrollTop = 0;
+        }
+    }, {
         key: "render",
         value: function render() {
+            if (this.state.showButton === false) {
+                return null;
+            }
+
             return _react2.default.createElement(
                 "div",
-                null,
+                { className: "scrollContainer" },
                 _react2.default.createElement(
                     "button",
-                    { onclick: "topFunction()", id: "myBtn", title: "Go to top" },
+                    { onClick: this.topFunction, title: "Go to top" },
                     "Top"
                 )
             );
@@ -22710,23 +22752,6 @@ var ScrollBtn = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = ScrollBtn;
-
-
-window.onscroll = function () {
-    scrollFunction();
-};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 222 || document.documentElement.scrollTop > 222) {
-        document.getElementById("myBtn").style.display = "block";
-    } else {
-        document.getElementById("myBtn").style.display = "none";
-    }
-}
-
-function topFunction() {
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
 
 /***/ })
 /******/ ]);

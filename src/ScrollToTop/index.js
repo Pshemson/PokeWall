@@ -2,10 +2,45 @@ import React from 'react';
 
 
 class ScrollBtn extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            showButton: false
+        }
+    }
+
+    componentDidMount() {
+        window.onscroll = () => this.scrollFunction();
+    }
+
+
+    scrollFunction() {
+        if (document.body.scrollTop > 222 || document.documentElement.scrollTop > 222) {
+            this.setState({
+                showButton: true
+            })
+        } else {
+            this.setState({
+                showButton: false
+            })
+        }
+    }
+
+
+
+    topFunction() {
+        document.documentElement.scrollTop = 0;
+    }
+
+
     render() {
+        if (this.state.showButton === false) {
+            return null;
+        }
+
         return (
-            <div>
-                <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+            <div className="scrollContainer">
+                <button onClick={this.topFunction} title="Go to top">Top</button>
             </div>
         );
     }
@@ -14,17 +49,4 @@ class ScrollBtn extends React.Component {
 export default ScrollBtn;
 
 
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 222 || document.documentElement.scrollTop > 222) {
-        document.getElementById("myBtn").style.display = "block";
-    } else {
-        document.getElementById("myBtn").style.display = "none";
-    }
-}
-
-function topFunction() {
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
 

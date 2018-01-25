@@ -38,44 +38,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         ////Wyszukiwarka (while typing)
-        //handleSearchChange = event => {
-        //    const searchValue = event.target.value;
-        //    const pokemonsy = this.state.pokemony.slice();
-//
-        //    const filteredPokemons = pokemony.filter((e) => {
-        //        return e.name.toLowerCase().includes(searchValue.toLowerCase());
-        //    }).map(function(e) {
-        //        return e.name
-        //    });
-//
-        //    this.setState({
-        //        searchValue : searchValue,
-        //        filteredPokemons : filteredPokemons,
-        //        showPotentialPokemons: true,
-        //    });
-        //};
+        handleSearchChange = event => {
+           const searchValue = event.target.value;
+           const pokemonsy = this.state.pokemony.slice();
 
-        ////wyszukiwanie cd
-        //getPokemonPropositions = () => {
-        //    if (this.state.searchValue.length >= 3 && this.state.potentialCountries.length > 0) {
-        //        const pokemonPropositions = this.state.filteredPokemons.map((country, i, array) => {
-        //            return <li
-        //                onClick={event => this.handlePokemonClick(pokemon, i)}
-        //                key={pokemon + i}>
-        //                {pokemony}
-        //            </li>;
-        //        });
-        //        return pokemonPropositions
-        //    } else if (this.state.searchValue.length >= 3 && this.state.filteredPokemons.length < 1) {
-        //        console.log("Nie ma takiego pokemona.");
-        //        const noPokemon = (
-        //            <li>
-        //                Błędna nazwa!
-        //            </li>
-        //        );
-        //        return noPokemon
-        //    }
-        //};
+           const filteredPokemons = pokemony.filter((e) => {
+               return e.name.toLowerCase().includes(searchValue.toLowerCase());
+           }).map(function(e) {
+               return e.name
+           });
+
+           this.setState({
+               searchValue : searchValue,
+               filteredPokemons : filteredPokemons,
+               showPotentialPokemons: true,
+           });
+        };
+
+        //wyszukiwanie cd
+        getPokemonPropositions = () => {
+           if (this.state.searchValue.length >= 3 && this.state.potentialCountries.length > 0) {
+               const pokemonPropositions = this.state.filteredPokemons.map((country, i, array) => {
+                   return <li
+                       onClick={event => this.handlePokemonClick(pokemon, i)}
+                       key={pokemon + i}>
+                       {pokemony}
+                   </li>;
+               });
+               return pokemonPropositions
+           } else if (this.state.searchValue.length >= 3 && this.state.filteredPokemons.length < 1) {
+               console.log("Nie ma takiego pokemona.");
+               const noPokemon = (
+                   <li>
+                       Błędna nazwa!
+                   </li>
+               );
+               return noPokemon
+           }
+        };
 
 
         pobierzPokemona = (url) => {

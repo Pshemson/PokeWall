@@ -120,8 +120,7 @@ h1, h2, h3, h4, h5 {
       color: #595959;
       display: block; } }
 
-#myBtn {
-  display: none;
+.scrollContainer button {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -133,8 +132,7 @@ h1, h2, h3, h4, h5 {
   cursor: pointer;
   padding: 14px;
   border-radius: 10px; }
-
-#myBtn:hover {
-  background-color: #555; }
+  .scrollContainer button:hover {
+    background-color: #555; }
 
 /*# sourceMappingURL=styles.css.map */
