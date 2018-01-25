@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Header from '../Header';
 import Pokemony from '../Pokemony';
 import Footer from '../Footer';
+import ScrollBtn from '../ScrollToTop';
+
 
 document.addEventListener('DOMContentLoaded', () => {
     class App extends React.Component {
@@ -126,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         closePopup={this.closePopup}
                     />
                     <Footer />
+                    <ScrollBtn/>
                 </div>
             );
         }

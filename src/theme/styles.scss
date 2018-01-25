@@ -177,3 +177,23 @@ h1, h2, h3, h4, h5 {
     display: block;
   }
 }
+
+//scroll back to the top button
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
