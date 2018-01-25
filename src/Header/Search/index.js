@@ -3,25 +3,20 @@ import React from 'react';
 class Search extends React.Component {
 
     render() {
-        //Pokazuje się kiedy dane są ładowane
-        //if (this.props.pokemony.length <= 1) {
-        //    return <span>Ładowanie...</span>
-        //}
-
-
-
         return (
             <div className="searchContainer">
-                <input placeholder="Wpisz nazwę..."
-                       value={this.props.searchValue}
-                       type = "text"
-                       onChange={this.props.handleSearchChange}
+                <input
+                    placeholder="Wpisz nazwę..."
+
+                    // funkcja searchPokemon w App jest odpalana przy kazdej zmianie (onChange) w inpucie
+                    // (ona tez generuje this.props.searchValue)
+                    onChange={event => this.props.searchPokemon(event)}
+
+                    // wartosc wpada tu ze state'a z App (przekazana w propsie najpierw do Header a potem do Search)
+                    value={this.props.searchValue}
+                    type = "text"
+
                 />
-                <ul>
-
-
-
-                </ul>
             </div>
         );
     }

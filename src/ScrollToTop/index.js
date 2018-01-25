@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class ScrollBtn extends React.Component {
     constructor() {
         super();
@@ -10,11 +9,12 @@ class ScrollBtn extends React.Component {
     }
 
     componentDidMount() {
+        //Onscroll obserwuje czy uzytkownik scrolluje ekran, jesli tak to uruchuamia funkcje scrollFunction
         window.onscroll = () => this.scrollFunction();
     }
 
-
     scrollFunction() {
+        // w zaleznosci od zeskrolowanej wysokosci ustawiam state
         if (document.body.scrollTop > 222 || document.documentElement.scrollTop > 222) {
             this.setState({
                 showButton: true
@@ -26,13 +26,12 @@ class ScrollBtn extends React.Component {
         }
     }
 
-
-
+    // powrot na sama gore
     topFunction() {
         document.documentElement.scrollTop = 0;
     }
 
-
+    // po zaladowaniu komponentu oraz przy zmianie state wywoluje sie render()
     render() {
         if (this.state.showButton === false) {
             return null;
@@ -47,6 +46,3 @@ class ScrollBtn extends React.Component {
 }
 
 export default ScrollBtn;
-
-
-

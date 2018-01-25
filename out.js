@@ -9643,53 +9643,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
             var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-            _this.handleSearchChange = function (event) {
+            _this.searchPokemon = function (event) {
+                // wartosc wpisywana w wyszukiwarce zapisuje do zmiennej
                 var searchValue = event.target.value;
-                var pokemonsy = _this.state.pokemony.slice();
 
-                var filteredPokemons = pokemony.filter(function (e) {
-                    return e.name.toLowerCase().includes(searchValue.toLowerCase());
-                }).map(function (e) {
-                    return e.name;
+                // robie kopie wszystkich pokemonow i zapisuje do zmiennej
+                var pokemony = _this.state.pokemony.slice();
+
+                // tworze zmienna (tablice) filteredPokemons w ktorej najpierw filtruje pokemony, ktorych nazwa jest zawarta w searchValue
+                var filteredPokemons = pokemony.filter(function (pokemon) {
+                    return pokemon.name.toLowerCase().includes(searchValue.toLowerCase());
+                    // a potem tworze z nich tablice
+                }).map(function (pokemon) {
+                    return pokemon;
                 });
 
+                // w state zapisuje wyszukiwana wartosc oraz aktualizuje filtrowane pokemony
                 _this.setState({
                     searchValue: searchValue,
-                    filteredPokemons: filteredPokemons,
-                    showPotentialPokemons: true
+                    filteredPokemons: filteredPokemons
                 });
-            };
-
-            _this.getPokemonPropositions = function () {
-                if (_this.state.searchValue.length >= 3 && _this.state.potentialCountries.length > 0) {
-                    var pokemonPropositions = _this.state.filteredPokemons.map(function (country, i, array) {
-                        return _react2.default.createElement(
-                            'li',
-                            {
-                                onClick: function onClick(event) {
-                                    return _this.handlePokemonClick(pokemon, i);
-                                },
-                                key: pokemon + i },
-                            pokemony
-                        );
-                    });
-                    return pokemonPropositions;
-                } else if (_this.state.searchValue.length >= 3 && _this.state.filteredPokemons.length < 1) {
-                    console.log("Nie ma takiego pokemona.");
-                    var noPokemon = _react2.default.createElement(
-                        'li',
-                        null,
-                        'B\u0142\u0119dna nazwa!'
-                    );
-                    return noPokemon;
-                }
             };
 
             _this.pobierzPokemona = function (url) {
+
+                // czyscimy state pokemona oraz wlaczamy popupa
                 _this.setState({
                     pokemon: {},
                     showPopup: true
                 });
+
+                // pobieramy dane pokemona
                 fetch(url).then(function (r) {
                     return r.json();
                 }).then(function (data) {
@@ -9707,6 +9691,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         pokeHeight: data.height
                     };
 
+                    // wrzucamy danego pobranego popupa do state'a
                     _this.setState({
                         pokemon: danePokemona
                     });
@@ -9724,8 +9709,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 searchValue: '',
                 filteredPokemons: [],
                 pokemon: {},
-                showPopup: false,
-                showPotentialPokemons: false
+                showPopup: false
             };
             return _this;
         }
@@ -9738,44 +9722,48 @@ document.addEventListener('DOMContentLoaded', function () {
                 fetch('https://pokeapi.co/api/v2/pokemon/?limit=200').then(function (r) {
                     return r.json();
                 }).then(function (data) {
+                    // tworze tablice z pobranych pokemonow (kazdy pokemon ma imie oraz url)
                     var pobranePokemony = data.results.map(function (e) {
                         return {
                             name: e.name,
                             url: e.url
                         };
                     });
+
+                    // pobrane pokemony wrzucam do state'a
                     _this2.setState({
-                        pokemony: pobranePokemony
+                        pokemony: pobranePokemony,
+                        filteredPokemons: pobranePokemony
                     });
                 });
             }
 
-            ////Wyszukiwarka (while typing)
+            //Wyszukiwarka (funcka odpalana onChange)
 
 
-            //wyszukiwanie cd
+            // po kliknieciu w pokemona na liscie odpala m.in fetcha z urlem tego pokemona (komponent Pokemony onlick na <li>)
 
         }, {
             key: 'render',
             value: function render() {
-                var _this3 = this;
-
                 return _react2.default.createElement(
                     'div',
                     null,
-                    _react2.default.createElement(_Header2.default, {
-                        handleSearchChange: function handleSearchChange(event) {
-                            return _this3.handleSearchChange(event);
-                        },
-                        filteredPokemons: this.state.filteredPokemons,
-                        searchValue: this.state.searchValue
+                    _react2.default.createElement(_Header2.default
+                    //przekazujemy do Headera  props o nazwie searchPokemon (do ktorego wrzucamy funkcje searchPokemon),
+                    // w komponencie Header bedzie on dostepny pod nazwą: this.props.searchPokemon
+                    , { searchPokemon: this.searchPokemon
+
+                        // do inputa searcha przekazujemy propsem wartość wygenerowaną w state (za pomoca funkcji searchPokemon)
+                        , searchValue: this.state.searchValue
                     }),
                     _react2.default.createElement(_Pokemony2.default, {
                         pokemon: this.state.pokemon,
                         getPokemon: this.pobierzPokemona,
-                        pokemonyLista: this.state.pokemony,
+                        pokemonyLista: this.state.filteredPokemons,
                         showPopup: this.state.showPopup,
-                        closePopup: this.closePopup
+                        closePopup: this.closePopup,
+                        searchValue: this.state.searchValue
                     }),
                     _react2.default.createElement(_Footer2.default, null),
                     _react2.default.createElement(_ScrollToTop2.default, null)
@@ -22306,7 +22294,7 @@ var Header = function (_React$Component) {
                     null,
                     'Wyszukaj pokemona i dowiedz si\u0119 o nim wi\u0119cej!'
                 ),
-                _react2.default.createElement(_Search2.default, null)
+                _react2.default.createElement(_Search2.default, { searchValue: this.props.searchValue, searchPokemon: this.props.searchPokemon })
             );
         }
     }]);
@@ -22353,21 +22341,25 @@ var Search = function (_React$Component) {
     _createClass(Search, [{
         key: "render",
         value: function render() {
-            //Pokazuje się kiedy dane są ładowane
-            //if (this.props.pokemony.length <= 1) {
-            //    return <span>Ładowanie...</span>
-            //}
-
+            var _this2 = this;
 
             return _react2.default.createElement(
                 "div",
                 { className: "searchContainer" },
-                _react2.default.createElement("input", { placeholder: "Wpisz nazw\u0119...",
-                    value: this.props.searchValue,
-                    type: "text",
-                    onChange: this.props.handleSearchChange
-                }),
-                _react2.default.createElement("ul", null)
+                _react2.default.createElement("input", {
+                    placeholder: "Wpisz nazw\u0119..."
+
+                    // funkcja searchPokemon w App jest odpalana przy kazdej zmianie (onChange) w inpucie
+                    // (ona tez generuje this.props.searchValue)
+                    , onChange: function onChange(event) {
+                        return _this2.props.searchPokemon(event);
+                    }
+
+                    // wartosc wpada tu ze state'a z App (przekazana w propsie najpierw do Header a potem do Search)
+                    , value: this.props.searchValue,
+                    type: "text"
+
+                })
             );
         }
     }]);
@@ -22421,8 +22413,17 @@ var Pokemony = function (_React$Component) {
             var _props = this.props,
                 _props$pokemonyLista = _props.pokemonyLista,
                 pokemonyLista = _props$pokemonyLista === undefined ? [] : _props$pokemonyLista,
-                getPokemon = _props.getPokemon;
+                getPokemon = _props.getPokemon,
+                searchValue = _props.searchValue;
 
+
+            if (!pokemonyLista.length && searchValue) {
+                return _react2.default.createElement(
+                    'h1',
+                    null,
+                    'Nie ma takich pokemon\xF3w...'
+                );
+            }
 
             if (!pokemonyLista.length) {
                 return _react2.default.createElement(
@@ -22707,6 +22708,7 @@ var ScrollBtn = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
+            //Onscroll obserwuje czy uzytkownik scrolluje ekran, jesli tak to uruchuamia funkcje scrollFunction
             window.onscroll = function () {
                 return _this2.scrollFunction();
             };
@@ -22714,6 +22716,7 @@ var ScrollBtn = function (_React$Component) {
     }, {
         key: "scrollFunction",
         value: function scrollFunction() {
+            // w zaleznosci od zeskrolowanej wysokosci ustawiam state
             if (document.body.scrollTop > 222 || document.documentElement.scrollTop > 222) {
                 this.setState({
                     showButton: true
@@ -22724,11 +22727,17 @@ var ScrollBtn = function (_React$Component) {
                 });
             }
         }
+
+        // powrot na sama gore
+
     }, {
         key: "topFunction",
         value: function topFunction() {
             document.documentElement.scrollTop = 0;
         }
+
+        // po zaladowaniu komponentu oraz przy zmianie state wywoluje sie render()
+
     }, {
         key: "render",
         value: function render() {
