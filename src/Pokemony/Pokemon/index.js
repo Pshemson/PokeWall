@@ -13,10 +13,10 @@ class Pokemon extends React.Component {
                 {!this.props.pokemonInfo.obrazek && <h4>Prosimy o cierpliwość...</h4>}
                 {this.props.pokemonInfo.obrazek &&
                 <div>
-                    <h2 style={{margin: '0'}}>Informacjesdfsdf:</h2>
+                    <h2 style={{margin: '0'}}>Informacje:</h2>
                     <img style={{height: '200px'}} src={this.props.pokemonInfo.obrazek} />
                     <ul>
-                        <li>Nazwa: {this.props.pokemonInfo.name}</li>
+                        <li>Nazwa: <a className="pokeName">{this.props.pokemonInfo.name}</a></li>
                         <li>Szybkość: {this.props.pokemonInfo.speedPoke}</li>
                         <li>Ochrona: {this.props.pokemonInfo.defense}</li>
                         <li>Siła ataku: {this.props.pokemonInfo.attack}</li>

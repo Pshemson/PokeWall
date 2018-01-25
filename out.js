@@ -538,7 +538,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMProperty = __webpack_require__(14);
+var DOMProperty = __webpack_require__(13);
 var ReactDOMComponentFlags = __webpack_require__(57);
 
 var invariant = __webpack_require__(1);
@@ -1263,7 +1263,7 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
 var CallbackQueue = __webpack_require__(61);
-var PooledClass = __webpack_require__(16);
+var PooledClass = __webpack_require__(15);
 var ReactFeatureFlags = __webpack_require__(62);
 var ReactReconciler = __webpack_require__(19);
 var Transaction = __webpack_require__(28);
@@ -1516,7 +1516,7 @@ module.exports = ReactUpdates;
 
 var _assign = __webpack_require__(4);
 
-var PooledClass = __webpack_require__(16);
+var PooledClass = __webpack_require__(15);
 
 var emptyFunction = __webpack_require__(9);
 var warning = __webpack_require__(2);
@@ -1779,16 +1779,6 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = __webpack_require__(17);
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -1998,7 +1988,7 @@ module.exports = DOMProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2343,7 +2333,7 @@ module.exports = ReactElement;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2459,6 +2449,16 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(17);
+
+
+/***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2478,7 +2478,7 @@ var _assign = __webpack_require__(4);
 var ReactBaseClasses = __webpack_require__(50);
 var ReactChildren = __webpack_require__(83);
 var ReactDOMFactories = __webpack_require__(87);
-var ReactElement = __webpack_require__(15);
+var ReactElement = __webpack_require__(14);
 var ReactPropTypes = __webpack_require__(91);
 var ReactVersion = __webpack_require__(94);
 
@@ -6812,7 +6812,7 @@ module.exports = getIteratorFn;
 
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactComponentTreeHook = __webpack_require__(7);
-var ReactElement = __webpack_require__(15);
+var ReactElement = __webpack_require__(14);
 
 var checkReactTypeSpec = __webpack_require__(88);
 
@@ -7265,7 +7265,7 @@ var _prodInvariant = __webpack_require__(3);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PooledClass = __webpack_require__(16);
+var PooledClass = __webpack_require__(15);
 
 var invariant = __webpack_require__(1);
 
@@ -7859,7 +7859,7 @@ module.exports = CSSProperty;
 
 
 
-var DOMProperty = __webpack_require__(14);
+var DOMProperty = __webpack_require__(13);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(8);
 
@@ -9036,7 +9036,7 @@ module.exports = getActiveElement;
 var _prodInvariant = __webpack_require__(3);
 
 var DOMLazyTree = __webpack_require__(20);
-var DOMProperty = __webpack_require__(14);
+var DOMProperty = __webpack_require__(13);
 var React = __webpack_require__(17);
 var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactCurrentOwner = __webpack_require__(10);
@@ -9602,7 +9602,7 @@ module.exports = getHostComponentFromComposite;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(13);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -9614,11 +9614,11 @@ var _Header = __webpack_require__(184);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Pokemony = __webpack_require__(188);
+var _Pokemony = __webpack_require__(186);
 
 var _Pokemony2 = _interopRequireDefault(_Pokemony);
 
-var _Footer = __webpack_require__(190);
+var _Footer = __webpack_require__(188);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -9678,7 +9678,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 searchValue: '',
                 filteredPokemons: [],
                 pokemon: {},
-                showPopup: false
+                showPopup: false,
+                showPotentialPokemons: false
             };
             return _this;
         }
@@ -9688,7 +9689,7 @@ document.addEventListener('DOMContentLoaded', function () {
             value: function componentDidMount() {
                 var _this2 = this;
 
-                fetch('https://pokeapi.co/api/v2/pokemon/?limit=100').then(function (r) {
+                fetch('https://pokeapi.co/api/v2/pokemon/?limit=200').then(function (r) {
                     return r.json();
                 }).then(function (data) {
                     var pobranePokemony = data.results.map(function (e) {
@@ -9702,6 +9703,48 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 });
             }
+
+            ////Wyszukiwarka (while typing)
+            //handleSearchChange = event => {
+            //    const searchValue = event.target.value;
+            //    const pokemonsy = this.state.pokemony.slice();
+            //
+            //    const filteredPokemons = pokemony.filter((e) => {
+            //        return e.name.toLowerCase().includes(searchValue.toLowerCase());
+            //    }).map(function(e) {
+            //        return e.name
+            //    });
+            //
+            //    this.setState({
+            //        searchValue : searchValue,
+            //        filteredPokemons : filteredPokemons,
+            //        showPotentialPokemons: true,
+            //    });
+            //};
+
+            ////wyszukiwanie cd
+            //getPokemonPropositions = () => {
+            //    if (this.state.searchValue.length >= 3 && this.state.potentialCountries.length > 0) {
+            //        const pokemonPropositions = this.state.filteredPokemons.map((country, i, array) => {
+            //            return <li
+            //                onClick={event => this.handlePokemonClick(pokemon, i)}
+            //                key={pokemon + i}>
+            //                {pokemony}
+            //            </li>;
+            //        });
+            //        return pokemonPropositions
+            //    } else if (this.state.searchValue.length >= 3 && this.state.filteredPokemons.length < 1) {
+            //        console.log("Nie ma takiego pokemona.");
+            //        const noPokemon = (
+            //            <li>
+            //                Błędna nazwa!
+            //            </li>
+            //        );
+            //        return noPokemon
+            //    }
+            //};
+
+
         }, {
             key: 'render',
             value: function render() {
@@ -9714,7 +9757,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         handleSearchChange: function handleSearchChange(event) {
                             return _this3.handleSearchChange(event);
                         },
-                        filteredPokemons: this.state.filteredPokemons
+                        filteredPokemons: this.state.filteredPokemons,
+                        searchValue: this.state.searchValue
                     }),
                     _react2.default.createElement(_Pokemony2.default, {
                         pokemon: this.state.pokemon,
@@ -9750,7 +9794,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 var PooledClass = __webpack_require__(84);
-var ReactElement = __webpack_require__(15);
+var ReactElement = __webpack_require__(14);
 
 var emptyFunction = __webpack_require__(9);
 var traverseAllChildren = __webpack_require__(85);
@@ -10301,7 +10345,7 @@ module.exports = KeyEscapeUtils;
 
 
 
-var ReactElement = __webpack_require__(15);
+var ReactElement = __webpack_require__(14);
 
 /**
  * Create a factory that creates HTML tag elements.
@@ -10614,7 +10658,7 @@ module.exports = ReactPropTypesSecret;
 
 
 
-var _require = __webpack_require__(15),
+var _require = __webpack_require__(14),
     isValidElement = _require.isValidElement;
 
 var factory = __webpack_require__(55);
@@ -11273,7 +11317,7 @@ module.exports = '15.6.2';
 var _require = __webpack_require__(50),
     Component = _require.Component;
 
-var _require2 = __webpack_require__(15),
+var _require2 = __webpack_require__(14),
     isValidElement = _require2.isValidElement;
 
 var ReactNoopUpdateQueue = __webpack_require__(51);
@@ -12175,7 +12219,7 @@ module.exports = factory;
 
 var _prodInvariant = __webpack_require__(18);
 
-var ReactElement = __webpack_require__(15);
+var ReactElement = __webpack_require__(14);
 
 var invariant = __webpack_require__(1);
 
@@ -12896,7 +12940,7 @@ module.exports = BeforeInputEventPlugin;
 
 var _assign = __webpack_require__(4);
 
-var PooledClass = __webpack_require__(16);
+var PooledClass = __webpack_require__(15);
 
 var getTextContentAccessor = __webpack_require__(60);
 
@@ -14211,7 +14255,7 @@ module.exports = EnterLeaveEventPlugin;
 
 
 
-var DOMProperty = __webpack_require__(14);
+var DOMProperty = __webpack_require__(13);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -14895,7 +14939,7 @@ var AutoFocusUtils = __webpack_require__(124);
 var CSSPropertyOperations = __webpack_require__(125);
 var DOMLazyTree = __webpack_require__(20);
 var DOMNamespaces = __webpack_require__(40);
-var DOMProperty = __webpack_require__(14);
+var DOMProperty = __webpack_require__(13);
 var DOMPropertyOperations = __webpack_require__(69);
 var EventPluginHub = __webpack_require__(22);
 var EventPluginRegistry = __webpack_require__(27);
@@ -18975,7 +19019,7 @@ module.exports = flattenChildren;
 
 var _assign = __webpack_require__(4);
 
-var PooledClass = __webpack_require__(16);
+var PooledClass = __webpack_require__(15);
 var Transaction = __webpack_require__(28);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactServerUpdateQueue = __webpack_require__(148);
@@ -19654,7 +19698,7 @@ var _assign = __webpack_require__(4);
 
 var EventListener = __webpack_require__(77);
 var ExecutionEnvironment = __webpack_require__(6);
-var PooledClass = __webpack_require__(16);
+var PooledClass = __webpack_require__(15);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
 
@@ -19850,7 +19894,7 @@ module.exports = getUnboundedScrollPosition;
 
 
 
-var DOMProperty = __webpack_require__(14);
+var DOMProperty = __webpack_require__(13);
 var EventPluginHub = __webpack_require__(22);
 var EventPluginUtils = __webpack_require__(34);
 var ReactComponentEnvironment = __webpack_require__(43);
@@ -19890,7 +19934,7 @@ module.exports = ReactInjection;
 var _assign = __webpack_require__(4);
 
 var CallbackQueue = __webpack_require__(61);
-var PooledClass = __webpack_require__(16);
+var PooledClass = __webpack_require__(15);
 var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactInputSelection = __webpack_require__(78);
 var ReactInstrumentation = __webpack_require__(8);
@@ -21952,7 +21996,7 @@ module.exports = ReactMount.renderSubtreeIntoContainer;
 
 
 
-var DOMProperty = __webpack_require__(14);
+var DOMProperty = __webpack_require__(13);
 var EventPluginRegistry = __webpack_require__(27);
 var ReactComponentTreeHook = __webpack_require__(7);
 
@@ -22115,7 +22159,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 
 
 
-var DOMProperty = __webpack_require__(14);
+var DOMProperty = __webpack_require__(13);
 var ReactComponentTreeHook = __webpack_require__(7);
 
 var warning = __webpack_require__(2);
@@ -22210,7 +22254,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(13);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -22274,7 +22318,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(13);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -22298,10 +22342,21 @@ var Search = function (_React$Component) {
     _createClass(Search, [{
         key: "render",
         value: function render() {
+            //Pokazuje się kiedy dane są ładowane
+            //if (this.props.pokemony.length <= 1) {
+            //    return <span>Ładowanie...</span>
+            //}
+
+
             return _react2.default.createElement(
                 "div",
-                { className: "container searchContainer" },
-                _react2.default.createElement("input", { placeholder: "Wpisz nazw\u0119..." })
+                { className: "searchContainer" },
+                _react2.default.createElement("input", { placeholder: "Wpisz nazw\u0119...",
+                    value: this.props.searchValue,
+                    type: "text",
+                    onChange: this.props.handleSearchChange
+                }),
+                _react2.default.createElement("ul", null)
             );
         }
     }]);
@@ -22312,9 +22367,7 @@ var Search = function (_React$Component) {
 exports.default = Search;
 
 /***/ }),
-/* 186 */,
-/* 187 */,
-/* 188 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22326,11 +22379,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(13);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Pokemon = __webpack_require__(189);
+var _Pokemon = __webpack_require__(187);
 
 var _Pokemon2 = _interopRequireDefault(_Pokemon);
 
@@ -22372,14 +22425,18 @@ var Pokemony = function (_React$Component) {
                 'div',
                 { className: 'container' },
                 _react2.default.createElement(
-                    'h1',
-                    null,
-                    'Lista Pokemon\xF3w'
-                ),
-                _react2.default.createElement(
-                    'p',
-                    null,
-                    'Kliknij na pokemona, aby uzyska\u0107 wi\u0119cej informacji.'
+                    'span',
+                    { className: 'subheading' },
+                    _react2.default.createElement(
+                        'h1',
+                        null,
+                        'Lista Pokemon\xF3w'
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        'Kliknij na pokemona, aby uzyska\u0107 wi\u0119cej informacji.'
+                    )
                 ),
                 _react2.default.createElement(_Pokemon2.default, { pokemonInfo: this.props.pokemon, showPopup: this.props.showPopup, closePopup: this.props.closePopup }),
                 _react2.default.createElement(
@@ -22405,7 +22462,7 @@ var Pokemony = function (_React$Component) {
 exports.default = Pokemony;
 
 /***/ }),
-/* 189 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22417,7 +22474,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(13);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -22464,7 +22521,7 @@ var Pokemon = function (_React$Component) {
                     _react2.default.createElement(
                         'h2',
                         { style: { margin: '0' } },
-                        'Informacjesdfsdf:'
+                        'Informacje:'
                     ),
                     _react2.default.createElement('img', { style: { height: '200px' }, src: this.props.pokemonInfo.obrazek }),
                     _react2.default.createElement(
@@ -22474,7 +22531,11 @@ var Pokemon = function (_React$Component) {
                             'li',
                             null,
                             'Nazwa: ',
-                            this.props.pokemonInfo.name
+                            _react2.default.createElement(
+                                'a',
+                                { className: 'pokeName' },
+                                this.props.pokemonInfo.name
+                            )
                         ),
                         _react2.default.createElement(
                             'li',
@@ -22538,7 +22599,7 @@ var Pokemon = function (_React$Component) {
 exports.default = Pokemon;
 
 /***/ }),
-/* 190 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22550,7 +22611,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(13);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 

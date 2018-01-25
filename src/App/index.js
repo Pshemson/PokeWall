@@ -14,11 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 filteredPokemons: [],
                 pokemon: {},
                 showPopup: false,
+                showPotentialPokemons: false,
             };
         }
 
         componentDidMount() {
-            fetch(`https://pokeapi.co/api/v2/pokemon/?limit=100`)
+            fetch(`https://pokeapi.co/api/v2/pokemon/?limit=200`)
                 .then(r => r.json())
                 .then(data => {
                     const pobranePokemony = data.results.map((e) => {
@@ -32,6 +33,48 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
         }
+
+
+        ////Wyszukiwarka (while typing)
+        //handleSearchChange = event => {
+        //    const searchValue = event.target.value;
+        //    const pokemonsy = this.state.pokemony.slice();
+//
+        //    const filteredPokemons = pokemony.filter((e) => {
+        //        return e.name.toLowerCase().includes(searchValue.toLowerCase());
+        //    }).map(function(e) {
+        //        return e.name
+        //    });
+//
+        //    this.setState({
+        //        searchValue : searchValue,
+        //        filteredPokemons : filteredPokemons,
+        //        showPotentialPokemons: true,
+        //    });
+        //};
+
+        ////wyszukiwanie cd
+        //getPokemonPropositions = () => {
+        //    if (this.state.searchValue.length >= 3 && this.state.potentialCountries.length > 0) {
+        //        const pokemonPropositions = this.state.filteredPokemons.map((country, i, array) => {
+        //            return <li
+        //                onClick={event => this.handlePokemonClick(pokemon, i)}
+        //                key={pokemon + i}>
+        //                {pokemony}
+        //            </li>;
+        //        });
+        //        return pokemonPropositions
+        //    } else if (this.state.searchValue.length >= 3 && this.state.filteredPokemons.length < 1) {
+        //        console.log("Nie ma takiego pokemona.");
+        //        const noPokemon = (
+        //            <li>
+        //                Błędna nazwa!
+        //            </li>
+        //        );
+        //        return noPokemon
+        //    }
+        //};
+
 
         pobierzPokemona = (url) => {
             this.setState({
@@ -73,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <Header
                         handleSearchChange={event => this.handleSearchChange(event)}
                         filteredPokemons={this.state.filteredPokemons}
+                        searchValue={this.state.searchValue}
                     />
                     <Pokemony
                         pokemon={this.state.pokemon}
