@@ -9622,10 +9622,6 @@ var _Footer = __webpack_require__(188);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _ScrollToTop = __webpack_require__(189);
-
-var _ScrollToTop2 = _interopRequireDefault(_ScrollToTop);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9642,6 +9638,22 @@ document.addEventListener('DOMContentLoaded', function () {
             _classCallCheck(this, App);
 
             var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+
+            _this.handleSearchChange = function (event) {
+                var searchValue = event.target.value;
+                var pokemony = _this.state.pokemony.slice();
+
+                var filteredPokemons = pokemony.filter(function (pokemon) {
+                    return pokemon.name.toLowerCase().includes(searchValue.toLowerCase());
+                }).map(function (pokemon) {
+                    return pokemon;
+                });
+
+                _this.setState({
+                    searchValue: searchValue,
+                    filteredPokemons: filteredPokemons
+                });
+            };
 
             _this.pobierzPokemona = function (url) {
                 _this.setState({
@@ -9682,8 +9694,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 searchValue: '',
                 filteredPokemons: [],
                 pokemon: {},
-                showPopup: false,
-                showPotentialPokemons: false
+                showPopup: false
             };
             return _this;
         }
@@ -9703,76 +9714,34 @@ document.addEventListener('DOMContentLoaded', function () {
                         };
                     });
                     _this2.setState({
-                        pokemony: pobranePokemony
+                        pokemony: pobranePokemony,
+                        filteredPokemons: pobranePokemony
                     });
                 });
             }
 
-            ////Wyszukiwarka (while typing)
-            //handleSearchChange = event => {
-            //    const searchValue = event.target.value;
-            //    const pokemonsy = this.state.pokemony.slice();
-            //
-            //    const filteredPokemons = pokemony.filter((e) => {
-            //        return e.name.toLowerCase().includes(searchValue.toLowerCase());
-            //    }).map(function(e) {
-            //        return e.name
-            //    });
-            //
-            //    this.setState({
-            //        searchValue : searchValue,
-            //        filteredPokemons : filteredPokemons,
-            //        showPotentialPokemons: true,
-            //    });
-            //};
-
-            ////wyszukiwanie cd
-            //getPokemonPropositions = () => {
-            //    if (this.state.searchValue.length >= 3 && this.state.potentialCountries.length > 0) {
-            //        const pokemonPropositions = this.state.filteredPokemons.map((country, i, array) => {
-            //            return <li
-            //                onClick={event => this.handlePokemonClick(pokemon, i)}
-            //                key={pokemon + i}>
-            //                {pokemony}
-            //            </li>;
-            //        });
-            //        return pokemonPropositions
-            //    } else if (this.state.searchValue.length >= 3 && this.state.filteredPokemons.length < 1) {
-            //        console.log("Nie ma takiego pokemona.");
-            //        const noPokemon = (
-            //            <li>
-            //                Błędna nazwa!
-            //            </li>
-            //        );
-            //        return noPokemon
-            //    }
-            //};
-
+            //Wyszukiwarka (while typing)
 
         }, {
             key: 'render',
             value: function render() {
-                var _this3 = this;
-
                 return _react2.default.createElement(
                     'div',
                     null,
                     _react2.default.createElement(_Header2.default, {
-                        handleSearchChange: function handleSearchChange(event) {
-                            return _this3.handleSearchChange(event);
-                        },
-                        filteredPokemons: this.state.filteredPokemons,
+                        searchPokemon: this.handleSearchChange,
                         searchValue: this.state.searchValue
+                        // pokemonyLista={this.state.pokemony}
                     }),
                     _react2.default.createElement(_Pokemony2.default, {
                         pokemon: this.state.pokemon,
                         getPokemon: this.pobierzPokemona,
-                        pokemonyLista: this.state.pokemony,
+                        pokemonyLista: this.state.filteredPokemons,
                         showPopup: this.state.showPopup,
-                        closePopup: this.closePopup
+                        closePopup: this.closePopup,
+                        searchValue: this.state.searchValue
                     }),
-                    _react2.default.createElement(_Footer2.default, null),
-                    _react2.default.createElement(_ScrollToTop2.default, null)
+                    _react2.default.createElement(_Footer2.default, null)
                 );
             }
         }]);
@@ -22300,7 +22269,7 @@ var Header = function (_React$Component) {
                     null,
                     'Wyszukaj pokemona i dowiedz si\u0119 o nim wi\u0119cej!'
                 ),
-                _react2.default.createElement(_Search2.default, null)
+                _react2.default.createElement(_Search2.default, { searchValue: this.props.searchValue, searchPokemon: this.props.searchPokemon })
             );
         }
     }]);
@@ -22347,11 +22316,7 @@ var Search = function (_React$Component) {
     _createClass(Search, [{
         key: "render",
         value: function render() {
-            //Pokazuje się kiedy dane są ładowane
-            //if (this.props.pokemony.length <= 1) {
-            //    return <span>Ładowanie...</span>
-            //}
-
+            var _this2 = this;
 
             return _react2.default.createElement(
                 "div",
@@ -22359,9 +22324,10 @@ var Search = function (_React$Component) {
                 _react2.default.createElement("input", { placeholder: "Wpisz nazw\u0119...",
                     value: this.props.searchValue,
                     type: "text",
-                    onChange: this.props.handleSearchChange
-                }),
-                _react2.default.createElement("ul", null)
+                    onChange: function onChange(event) {
+                        return _this2.props.searchPokemon(event);
+                    }
+                })
             );
         }
     }]);
@@ -22415,8 +22381,17 @@ var Pokemony = function (_React$Component) {
             var _props = this.props,
                 _props$pokemonyLista = _props.pokemonyLista,
                 pokemonyLista = _props$pokemonyLista === undefined ? [] : _props$pokemonyLista,
-                getPokemon = _props.getPokemon;
+                getPokemon = _props.getPokemon,
+                searchValue = _props.searchValue;
 
+
+            if (!pokemonyLista.length && searchValue) {
+                return _react2.default.createElement(
+                    'h1',
+                    null,
+                    'Nie ma takich pokemon\xF3w...'
+                );
+            }
 
             if (!pokemonyLista.length) {
                 return _react2.default.createElement(
@@ -22656,77 +22631,6 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
-
-/***/ }),
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ScrollBtn = function (_React$Component) {
-    _inherits(ScrollBtn, _React$Component);
-
-    function ScrollBtn() {
-        _classCallCheck(this, ScrollBtn);
-
-        return _possibleConstructorReturn(this, (ScrollBtn.__proto__ || Object.getPrototypeOf(ScrollBtn)).apply(this, arguments));
-    }
-
-    _createClass(ScrollBtn, [{
-        key: "render",
-        value: function render() {
-            return _react2.default.createElement(
-                "div",
-                null,
-                _react2.default.createElement(
-                    "button",
-                    { onclick: "topFunction()", id: "myBtn", title: "Go to top" },
-                    "Top"
-                )
-            );
-        }
-    }]);
-
-    return ScrollBtn;
-}(_react2.default.Component);
-
-exports.default = ScrollBtn;
-
-
-window.onscroll = function () {
-    scrollFunction();
-};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 222 || document.documentElement.scrollTop > 222) {
-        document.getElementById("myBtn").style.display = "block";
-    } else {
-        document.getElementById("myBtn").style.display = "none";
-    }
-}
-
-function topFunction() {
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
 
 /***/ })
 /******/ ]);

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Header from '../Header';
 import Pokemony from '../Pokemony';
 import Footer from '../Footer';
-import ScrollBtn from '../ScrollToTop';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 filteredPokemons: [],
                 pokemon: {},
                 showPopup: false,
-                showPotentialPokemons: false,
             };
         }
 
@@ -31,52 +29,29 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                     this.setState({
-                        pokemony: pobranePokemony
+                        pokemony: pobranePokemony,
+                        filteredPokemons: pobranePokemony,
                     });
                 });
         }
 
 
-        ////Wyszukiwarka (while typing)
-        //handleSearchChange = event => {
-        //    const searchValue = event.target.value;
-        //    const pokemonsy = this.state.pokemony.slice();
-//
-        //    const filteredPokemons = pokemony.filter((e) => {
-        //        return e.name.toLowerCase().includes(searchValue.toLowerCase());
-        //    }).map(function(e) {
-        //        return e.name
-        //    });
-//
-        //    this.setState({
-        //        searchValue : searchValue,
-        //        filteredPokemons : filteredPokemons,
-        //        showPotentialPokemons: true,
-        //    });
-        //};
+        //Wyszukiwarka (while typing)
+        handleSearchChange = event => {
+           const searchValue = event.target.value;
+           const pokemony = this.state.pokemony.slice();
 
-        ////wyszukiwanie cd
-        //getPokemonPropositions = () => {
-        //    if (this.state.searchValue.length >= 3 && this.state.potentialCountries.length > 0) {
-        //        const pokemonPropositions = this.state.filteredPokemons.map((country, i, array) => {
-        //            return <li
-        //                onClick={event => this.handlePokemonClick(pokemon, i)}
-        //                key={pokemon + i}>
-        //                {pokemony}
-        //            </li>;
-        //        });
-        //        return pokemonPropositions
-        //    } else if (this.state.searchValue.length >= 3 && this.state.filteredPokemons.length < 1) {
-        //        console.log("Nie ma takiego pokemona.");
-        //        const noPokemon = (
-        //            <li>
-        //                Błędna nazwa!
-        //            </li>
-        //        );
-        //        return noPokemon
-        //    }
-        //};
+           const filteredPokemons = pokemony.filter((pokemon) => {
+               return pokemon.name.toLowerCase().includes(searchValue.toLowerCase());
+           }).map(function(pokemon) {
+               return pokemon
+           });
 
+           this.setState({
+               searchValue : searchValue,
+               filteredPokemons: filteredPokemons,
+           });
+        };
 
         pobierzPokemona = (url) => {
             this.setState({
@@ -116,19 +91,19 @@ document.addEventListener('DOMContentLoaded', () => {
             return (
                 <div>
                     <Header
-                        handleSearchChange={event => this.handleSearchChange(event)}
-                        filteredPokemons={this.state.filteredPokemons}
+                        searchPokemon={this.handleSearchChange}
                         searchValue={this.state.searchValue}
+                        // pokemonyLista={this.state.pokemony}
                     />
                     <Pokemony
                         pokemon={this.state.pokemon}
                         getPokemon={this.pobierzPokemona}
-                        pokemonyLista={this.state.pokemony}
+                        pokemonyLista={this.state.filteredPokemons}
                         showPopup={this.state.showPopup}
                         closePopup={this.closePopup}
+                        searchValue={this.state.searchValue}
                     />
                     <Footer />
-                    <ScrollBtn/>
                 </div>
             );
         }
