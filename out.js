@@ -9647,7 +9647,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // czyscimy state pokemona oraz wlaczamy popupa
                 _this.setState({
-                    pokemon: {},
+                    //pokemon: {},
                     showPopup: true
                 });
 
@@ -22413,7 +22413,7 @@ var Pokemony = function (_React$Component) {
                     _react2.default.createElement(
                         'h1',
                         null,
-                        'Lista Pokemon\xF3w'
+                        'Lista POKEMON\xD3W'
                     ),
                     _react2.default.createElement(
                         'p',
@@ -22490,7 +22490,7 @@ var Pokemon = function (_React$Component) {
                 { className: 'pokemonContainer' },
                 _react2.default.createElement(
                     'span',
-                    { onClick: this.props.closePopup },
+                    { style: { color: 'white', fontWeight: 'bold', textShadow: '3px 1px 9px #000' }, onClick: this.props.closePopup },
                     'X'
                 ),
                 !this.props.pokemonInfo.obrazek && _react2.default.createElement(
@@ -22506,7 +22506,7 @@ var Pokemon = function (_React$Component) {
                         { style: { margin: '0', color: 'white', textShadow: '3px 1px 9px #000' } },
                         'Informacje:'
                     ),
-                    _react2.default.createElement('img', { style: { height: '200px', textAlign: "center" }, src: this.props.pokemonInfo.obrazek }),
+                    _react2.default.createElement('img', { style: { height: '200px', marginLeft: '22px' }, src: this.props.pokemonInfo.obrazek }),
                     _react2.default.createElement(
                         'ul',
                         null,

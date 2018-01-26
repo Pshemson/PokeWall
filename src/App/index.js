@@ -38,9 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         }
 
-
-
-
         // po kliknieciu w pokemona na liscie odpala m.in fetcha z urlem tego pokemona (komponent Pokemony onlick na <li>)
         pobierzPokemona = (url) => {
 
