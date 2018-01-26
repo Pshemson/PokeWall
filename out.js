@@ -22503,10 +22503,10 @@ var Pokemon = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                         'h2',
-                        { style: { margin: '0' } },
+                        { style: { margin: '0', color: 'white', textShadow: '3px 1px 9px #000' } },
                         'Informacje:'
                     ),
-                    _react2.default.createElement('img', { style: { height: '200px' }, src: this.props.pokemonInfo.obrazek }),
+                    _react2.default.createElement('img', { style: { height: '200px', textAlign: "center" }, src: this.props.pokemonInfo.obrazek }),
                     _react2.default.createElement(
                         'ul',
                         null,

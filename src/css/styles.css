@@ -36,7 +36,11 @@ h1, h2, h3, h4, h5 {
 .pokemonsList {
   padding: 0;
   list-style: none;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  font-size: 18px;
+  color: #dffff7;
+  font-weight: bold;
+  text-shadow: 3px 1px 9px #000; }
   .pokemonsList li {
     cursor: pointer;
     border: 1px solid grey;
