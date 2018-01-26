@@ -3,7 +3,7 @@ import React from 'react';
 class Pokemon extends React.Component {
 
     render() {
-        if (!this.props.showPopup) {
+        if (this.props.showPopup === false) {
             return null;
         }
 

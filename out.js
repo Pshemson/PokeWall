@@ -9643,28 +9643,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-            _this.searchPokemon = function (event) {
-                // wartosc wpisywana w wyszukiwarce zapisuje do zmiennej
-                var searchValue = event.target.value;
-
-                // robie kopie wszystkich pokemonow i zapisuje do zmiennej
-                var pokemony = _this.state.pokemony.slice();
-
-                // tworze zmienna (tablice) filteredPokemons w ktorej najpierw filtruje pokemony, ktorych nazwa jest zawarta w searchValue
-                var filteredPokemons = pokemony.filter(function (pokemon) {
-                    return pokemon.name.toLowerCase().includes(searchValue.toLowerCase());
-                    // a potem tworze z nich tablice
-                }).map(function (pokemon) {
-                    return pokemon;
-                });
-
-                // w state zapisuje wyszukiwana wartosc oraz aktualizuje filtrowane pokemony
-                _this.setState({
-                    searchValue: searchValue,
-                    filteredPokemons: filteredPokemons
-                });
-            };
-
             _this.pobierzPokemona = function (url) {
 
                 // czyscimy state pokemona oraz wlaczamy popupa
@@ -9737,9 +9715,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 });
             }
-
-            //Wyszukiwarka (funcka odpalana onChange)
-
 
             // po kliknieciu w pokemona na liscie odpala m.in fetcha z urlem tego pokemona (komponent Pokemony onlick na <li>)
 
@@ -22506,7 +22481,7 @@ var Pokemon = function (_React$Component) {
     _createClass(Pokemon, [{
         key: 'render',
         value: function render() {
-            if (!this.props.showPopup) {
+            if (this.props.showPopup === false) {
                 return null;
             }
 

@@ -39,28 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-        //Wyszukiwarka (funcka odpalana onChange)
-        searchPokemon = event => {
-            // wartosc wpisywana w wyszukiwarce zapisuje do zmiennej
-           const searchValue = event.target.value;
 
-           // robie kopie wszystkich pokemonow i zapisuje do zmiennej
-           const pokemony = this.state.pokemony.slice();
-
-           // tworze zmienna (tablice) filteredPokemons w ktorej najpierw filtruje pokemony, ktorych nazwa jest zawarta w searchValue
-           const filteredPokemons = pokemony.filter((pokemon) => {
-               return pokemon.name.toLowerCase().includes(searchValue.toLowerCase());
-               // a potem tworze z nich tablice
-           }).map(function(pokemon) {
-               return pokemon
-           });
-
-            // w state zapisuje wyszukiwana wartosc oraz aktualizuje filtrowane pokemony
-           this.setState({
-               searchValue : searchValue,
-               filteredPokemons: filteredPokemons,
-           });
-        };
 
         // po kliknieciu w pokemona na liscie odpala m.in fetcha z urlem tego pokemona (komponent Pokemony onlick na <li>)
         pobierzPokemona = (url) => {
