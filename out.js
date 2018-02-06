@@ -9647,7 +9647,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // czyscimy state pokemona oraz wlaczamy popupa
                 _this.setState({
-                    //pokemon: {},
+                    pokemon: {},
                     showPopup: true
                 });
 
@@ -9679,6 +9679,28 @@ document.addEventListener('DOMContentLoaded', function () {
             _this.closePopup = function () {
                 _this.setState({
                     showPopup: false
+                });
+            };
+
+            _this.searchPokemon = function (event) {
+                // wartosc wpisywana w wyszukiwarce zapisuje do zmiennej
+                var searchValue = event.target.value;
+
+                // robie kopie wszystkich pokemonow i zapisuje do zmiennej
+                var pokemony = _this.state.pokemony.slice();
+
+                // tworze zmienna (tablice) filteredPokemons w ktorej najpierw filtruje pokemony, ktorych nazwa jest zawarta w searchValue
+                var filteredPokemons = pokemony.filter(function (pokemon) {
+                    return pokemon.name.toLowerCase().includes(searchValue.toLowerCase());
+                    // a potem tworze z nich tablice
+                }).map(function (pokemon) {
+                    return pokemon;
+                });
+
+                // w state zapisuje wyszukiwana wartosc oraz aktualizuje filtrowane pokemony
+                _this.setState({
+                    searchValue: searchValue,
+                    filteredPokemons: filteredPokemons
                 });
             };
 
@@ -9717,6 +9739,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             // po kliknieciu w pokemona na liscie odpala m.in fetcha z urlem tego pokemona (komponent Pokemony onlick na <li>)
+
+
+            //Wyszukiwarka (funkcja odpalana onChange)
 
         }, {
             key: 'render',
@@ -22316,6 +22341,8 @@ var Search = function (_React$Component) {
     _createClass(Search, [{
         key: "render",
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 "div",
                 { className: "searchContainer" },
@@ -22324,11 +22351,13 @@ var Search = function (_React$Component) {
 
                     // funkcja searchPokemon w App jest odpalana przy kazdej zmianie (onChange) w inpucie
                     // (ona tez generuje this.props.searchValue)
-                    //onChange={event => this.props.searchPokemon(event)}
+                    , onChange: function onChange(event) {
+                        return _this2.props.searchPokemon(event);
+                    }
 
                     // wartosc wpada tu ze state'a z App (przekazana w propsie najpierw do Header a potem do Search)
-                    //value={this.props.searchValue}
-                    , type: "text"
+                    , value: this.props.searchValue,
+                    type: "text"
 
                 })
             );

@@ -10,10 +10,10 @@ class Search extends React.Component {
 
                     // funkcja searchPokemon w App jest odpalana przy kazdej zmianie (onChange) w inpucie
                     // (ona tez generuje this.props.searchValue)
-                    //onChange={event => this.props.searchPokemon(event)}
+                    onChange={event => this.props.searchPokemon(event)}
 
                     // wartosc wpada tu ze state'a z App (przekazana w propsie najpierw do Header a potem do Search)
-                    //value={this.props.searchValue}
+                    value={this.props.searchValue}
                     type = "text"
 
                 />
