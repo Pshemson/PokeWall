@@ -94,7 +94,8 @@ h1, h2, h3, h4, h5 {
 
 .headerContainer {
   text-align: center;
-  position: relative; }
+  position: relative;
+  overflow: hidden; }
   .headerContainer .headerContent {
     position: absolute;
     width: 100%;
