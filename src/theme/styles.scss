@@ -44,8 +44,12 @@ h1, h2, h3, h4, h5 {
   padding: 5px;
   background: #35e474;
   opacity: 0.9;
+  position: absolute;
+  width: 100%;
+  bottom: -91%;
   @include small {
-    padding: 22px;
+    padding: 11px;
+    bottom: -125%;
   }
   input {
     padding: 2px 14px;
@@ -151,26 +155,28 @@ h1, h2, h3, h4, h5 {
 //Header component
 .headerContainer {
   text-align: center;
-  padding: 5px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background: url("../images/background3.png");
-
-
+  //padding: 5px;
+  //background-size: cover;
+  //background-repeat: no-repeat;
+  //background: url("../images/background3.png");
+  .headerContent {
+    position: absolute;
+    width: 100%;
+    top: 3%;
+    h1 {
+      font-size: 50px;
+      font-weight: bold;
+      color: #595959;
+    }
+    p {
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 1px 9px #000, 4px 7px 9px #69ff23
+    }
+  }
 }
 
-.headerContainer h1 {
-  font-size: 50px;
-  font-weight: bold;
-  color: #595959;
-}
-
-.headerContainer p {
-  font-size: 28px;
-  font-weight: bold;
-  color: white;
-  text-shadow: 3px 1px 9px #000, 4px 7px 9px #69ff23
-}
 
 .subheading {
   display: none;
@@ -178,6 +184,11 @@ h1, h2, h3, h4, h5 {
     font-size: 14px;
     color: #595959;
     display: block;
+    border: 1px solid black;
+    background-color: #00ffff3b;
+    h2, p {
+      margin-left: 5px;
+    }
   }
 }
 

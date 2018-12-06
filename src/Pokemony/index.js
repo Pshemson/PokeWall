@@ -17,7 +17,7 @@ class Pokemony extends React.Component {
 
         return (
             <div className="container">
-                <span className="subheading"><h1>Lista POKEMONÓW</h1>
+                <span className="subheading"><h2>Lista POKEMONÓW</h2>
                     <p>Kliknij na pokemona, aby uzyskać więcej informacji.</p></span>
                <Pokemon pokemonInfo={this.props.pokemon} showPopup={this.props.showPopup} closePopup={this.props.closePopup}/>
                 <ul className="pokemonsList">

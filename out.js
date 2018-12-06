@@ -22284,17 +22284,22 @@ var Header = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'headerContainer' },
+                _react2.default.createElement('img', { src: 'src/images/wallPoke2.png' }),
                 _react2.default.createElement(
-                    'h1',
-                    null,
-                    'PokeWall'
-                ),
-                _react2.default.createElement(
-                    'p',
-                    null,
-                    'Wyszukaj pokemona i dowiedz si\u0119 o nim wi\u0119cej!'
-                ),
-                _react2.default.createElement(_Search2.default, { searchValue: this.props.searchValue, searchPokemon: this.props.searchPokemon })
+                    'div',
+                    { className: 'headerContent' },
+                    _react2.default.createElement(
+                        'h1',
+                        null,
+                        'PokeWall'
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        'Wyszukaj pokemona i dowiedz si\u0119 o nim wi\u0119cej!'
+                    ),
+                    _react2.default.createElement(_Search2.default, { searchValue: this.props.searchValue, searchPokemon: this.props.searchPokemon })
+                )
             );
         }
     }]);
@@ -22440,7 +22445,7 @@ var Pokemony = function (_React$Component) {
                     'span',
                     { className: 'subheading' },
                     _react2.default.createElement(
-                        'h1',
+                        'h2',
                         null,
                         'Lista POKEMON\xD3W'
                     ),
