@@ -21,22 +21,6 @@ h1, h2, h3, h4, h5 {
   display: table;
   content: ''; }
 
-.searchContainer {
-  text-align: center;
-  padding: 5px;
-  background: #35e474;
-  opacity: 0.9;
-  position: absolute;
-  width: 100%;
-  bottom: -91%; }
-  @media (min-width: 768px) {
-    .searchContainer {
-      padding: 11px;
-      bottom: -125%; } }
-  .searchContainer input {
-    padding: 2px 14px;
-    line-height: 30px; }
-
 .pokemonsList {
   padding: 0;
   list-style: none;
@@ -103,7 +87,8 @@ h1, h2, h3, h4, h5 {
       padding: 20px; } }
 
 .headerContainer {
-  text-align: center; }
+  text-align: center;
+  position: relative; }
   .headerContainer .headerContent {
     position: absolute;
     width: 100%;
@@ -117,6 +102,23 @@ h1, h2, h3, h4, h5 {
       font-weight: bold;
       color: white;
       text-shadow: 3px 1px 9px #000, 4px 7px 9px #69ff23; }
+  @media (min-width: 1200px) {
+    .headerContainer img {
+      width: 100%; } }
+  .headerContainer .searchContainer {
+    text-align: center;
+    padding: 5px;
+    background: #35e474;
+    opacity: 0.9;
+    position: absolute;
+    width: 100%;
+    bottom: 1%; }
+    @media (min-width: 768px) {
+      .headerContainer .searchContainer {
+        padding: 11px; } }
+    .headerContainer .searchContainer input {
+      padding: 2px 14px;
+      line-height: 30px; }
 
 .subheading {
   display: none; }

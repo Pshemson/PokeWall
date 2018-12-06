@@ -9,8 +9,8 @@ class Header extends React.Component {
               <div className="headerContent">
                 <h1>PokeWall</h1>
                 <p>Wyszukaj pokemona i dowiedz się o nim więcej!</p>
-                <Search searchValue={this.props.searchValue} searchPokemon={this.props.searchPokemon} />
               </div>
+              <Search searchValue={this.props.searchValue} searchPokemon={this.props.searchPokemon} />
             </div>
         );
     }

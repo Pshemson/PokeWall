@@ -22297,9 +22297,9 @@ var Header = function (_React$Component) {
                         'p',
                         null,
                         'Wyszukaj pokemona i dowiedz si\u0119 o nim wi\u0119cej!'
-                    ),
-                    _react2.default.createElement(_Search2.default, { searchValue: this.props.searchValue, searchPokemon: this.props.searchPokemon })
-                )
+                    )
+                ),
+                _react2.default.createElement(_Search2.default, { searchValue: this.props.searchValue, searchPokemon: this.props.searchPokemon })
             );
         }
     }]);

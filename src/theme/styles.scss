@@ -5,6 +5,11 @@
   }
 }
 
+@mixin medium {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
 
 //Styles
 * {
@@ -40,23 +45,7 @@ h1, h2, h3, h4, h5 {
 }
 
 //Component Search
-.searchContainer {
-  text-align: center;
-  padding: 5px;
-  background: #35e474;
-  opacity: 0.9;
-  position: absolute;
-  width: 100%;
-  bottom: -91%;
-  @include small {
-    padding: 11px;
-    bottom: -125%;
-  }
-  input {
-    padding: 2px 14px;
-    line-height: 30px;
-  }
-}
+
 
 .loading {
 
@@ -156,6 +145,7 @@ h1, h2, h3, h4, h5 {
 //Header component
 .headerContainer {
   text-align: center;
+  position: relative;
   //padding: 5px;
   //background-size: cover;
   //background-repeat: no-repeat;
@@ -174,6 +164,27 @@ h1, h2, h3, h4, h5 {
       font-weight: bold;
       color: white;
       text-shadow: 3px 1px 9px #000, 4px 7px 9px #69ff23
+    }
+  }
+  img {
+    @include medium {
+      width: 100%;
+    }
+  }
+  .searchContainer {
+    text-align: center;
+    padding: 5px;
+    background: #35e474;
+    opacity: 0.9;
+    position: absolute;
+    width: 100%;
+    bottom: 1%;
+    @include small {
+      padding: 11px;
+    }
+    input {
+      padding: 2px 14px;
+      line-height: 30px;
     }
   }
 }
