@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="23510ab7-e682-4f97-9ab7-b353494925ef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out.js" afterPath="$PROJECT_DIR$/out.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Header/index.js" afterPath="$PROJECT_DIR$/src/Header/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/styles.css" afterPath="$PROJECT_DIR$/src/css/styles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/styles.css.map" afterPath="$PROJECT_DIR$/src/css/styles.css.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/theme/styles.scss" afterPath="$PROJECT_DIR$/src/theme/styles.scss" />
@@ -43,7 +41,7 @@
         </entry>
       </file>
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Header/Search/index.js">
+        <entry file="file://$PROJECT_DIR$/src/Pokemony/Pokemon/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -55,8 +53,8 @@
       <file leaf-file-name="styles.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/theme/styles.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="182" column="20" lean-forward="false" selection-start-line="182" selection-start-column="20" selection-end-line="182" selection-end-column="20" />
+            <state relative-caret-position="468">
+              <caret line="102" column="13" lean-forward="true" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -191,7 +189,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="Pokemony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pokemon" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -388,12 +390,12 @@
       <workItem from="1544020181141" duration="823000" />
       <workItem from="1544021022928" duration="1298000" />
       <workItem from="1544022338575" duration="2600000" />
-      <workItem from="1544081055918" duration="6144000" />
+      <workItem from="1544081055918" duration="7258000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18176000" />
+    <option name="totallyTimeSpent" value="19290000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="0" />
@@ -450,10 +452,10 @@
         <state relative-caret-position="210">
           <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
           <folding>
-            <marker date="1544091972181" expanded="true" signature="2543:2765" ph="{...}" />
-            <marker date="1544091972181" expanded="true" signature="2561:2763" ph="{...}" />
-            <marker date="1544091972181" expanded="true" signature="2791:2996" ph="{...}" />
-            <marker date="1544091972181" expanded="true" signature="3029:3060" ph="{...}" />
+            <marker date="1544093024998" expanded="true" signature="2543:2765" ph="{...}" />
+            <marker date="1544093024998" expanded="true" signature="2561:2763" ph="{...}" />
+            <marker date="1544093024998" expanded="true" signature="2791:2996" ph="{...}" />
+            <marker date="1544093024998" expanded="true" signature="3029:3060" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -653,10 +655,10 @@
         <state relative-caret-position="-2121">
           <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
           <folding>
-            <marker date="1544091972181" expanded="true" signature="2543:2765" ph="{...}" />
-            <marker date="1544091972181" expanded="true" signature="2561:2763" ph="{...}" />
-            <marker date="1544091972181" expanded="true" signature="2791:2996" ph="{...}" />
-            <marker date="1544091972181" expanded="true" signature="3029:3060" ph="{...}" />
+            <marker date="1544093024998" expanded="true" signature="2543:2765" ph="{...}" />
+            <marker date="1544093024998" expanded="true" signature="2561:2763" ph="{...}" />
+            <marker date="1544093024998" expanded="true" signature="2791:2996" ph="{...}" />
+            <marker date="1544093024998" expanded="true" signature="3029:3060" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -679,14 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Header/Search/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -703,10 +697,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Pokemony/Pokemon/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/theme/styles.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="182" column="20" lean-forward="false" selection-start-line="182" selection-start-column="20" selection-end-line="182" selection-end-column="20" />
+        <state relative-caret-position="468">
+          <caret line="102" column="13" lean-forward="true" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
           <folding />
         </state>
       </provider>
