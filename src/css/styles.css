@@ -110,9 +110,13 @@ h1, h2, h3, h4, h5 {
       font-weight: bold;
       color: white;
       text-shadow: 3px 1px 9px #000, 4px 7px 9px #69ff23; }
+  .headerContainer img {
+    position: relative;
+    left: -13%; }
   @media (min-width: 1200px) {
-    .headerContainer img {
-      width: 100%; } }
+    .headerContainer {
+      width: 100%;
+      left: 0; } }
   .headerContainer .searchContainer {
     text-align: center;
     padding: 5px;
