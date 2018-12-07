@@ -180,11 +180,11 @@ h1, h2, h3, h4, h5 {
   img {
     position: relative;
     left: -13%;
-  }
     @include medium {
       width: 100%;
-      left:0;
+      left: 0;
     }
+  }
   .searchContainer {
     text-align: center;
     padding: 5px;

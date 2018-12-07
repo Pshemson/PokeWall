@@ -113,10 +113,10 @@ h1, h2, h3, h4, h5 {
   .headerContainer img {
     position: relative;
     left: -13%; }
-  @media (min-width: 1200px) {
-    .headerContainer {
-      width: 100%;
-      left: 0; } }
+    @media (min-width: 1200px) {
+      .headerContainer img {
+        width: 100%;
+        left: 0; } }
   .headerContainer .searchContainer {
     text-align: center;
     padding: 5px;
