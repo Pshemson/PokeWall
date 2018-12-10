@@ -95,36 +95,22 @@ h1, h2, h3, h4, h5 {
 
 .headerContainer {
   text-align: center;
-  position: relative;
-  overflow: hidden; }
-  .headerContainer .headerContent {
-    position: absolute;
-    width: 100%;
-    top: 3%; }
-    .headerContainer .headerContent h1 {
-      font-size: 50px;
-      font-weight: bold;
-      color: #595959; }
-    .headerContainer .headerContent p {
-      font-size: 28px;
-      font-weight: bold;
-      color: white;
-      text-shadow: 3px 1px 9px #000, 4px 7px 9px #69ff23; }
-  .headerContainer img {
-    position: relative;
-    left: -13%; }
-    @media (min-width: 1200px) {
-      .headerContainer img {
-        width: 100%;
-        left: 0; } }
+  overflow: hidden;
+  background: url("../images/wallPoke2.png") bottom; }
+  .headerContainer .headerContent h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: #595959; }
+  .headerContainer .headerContent p {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 3px 1px 9px #000, 4px 7px 9px #69ff23; }
   .headerContainer .searchContainer {
     text-align: center;
     padding: 5px;
     background: #35e474;
-    opacity: 0.9;
-    position: absolute;
-    width: 100%;
-    bottom: 1%; }
+    opacity: 0.9; }
     @media (min-width: 768px) {
       .headerContainer .searchContainer {
         padding: 11px; } }

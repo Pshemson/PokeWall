@@ -1,7 +1,12 @@
 import React from 'react';
+import InfiniteLoader from 'react-infinite-loader'
 import Pokemon from './Pokemon';
 
 class Pokemony extends React.Component {
+  handleVisit = () => {
+   console.log('Load more pokemons...');
+  };
+
     render() {
         const { pokemonyLista = [], getPokemon, searchValue } = this.props;
 
@@ -25,6 +30,7 @@ class Pokemony extends React.Component {
                         return <li key={i} onClick={event => getPokemon(ele.url)}>{ele.name}</li>;
                     })}
                 </ul>
+              <InfiniteLoader onVisited={ () => this.handleVisit() } />
             </div>
         );
     }

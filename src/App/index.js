@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         componentDidMount() {
-            fetch(`https://pokeapi.co/api/v2/pokemon/?limit=200`)
+            fetch(`https://pokeapi.co/api/v2/pokemon/?limit=20`)
                 .then(r => r.json())
                 .then(data => {
                     // tworze tablice z pobranych pokemonow (kazdy pokemon ma imie oraz url)

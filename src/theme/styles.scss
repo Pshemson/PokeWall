@@ -155,16 +155,19 @@ h1, h2, h3, h4, h5 {
 //Header component
 .headerContainer {
   text-align: center;
-  position: relative;
+  //position: relative;
   overflow: hidden;
+  background: url("../images/wallPoke2.png") bottom;
+
+
   //padding: 5px;
   //background-size: cover;
   //background-repeat: no-repeat;
   //background: url("../images/background3.png");
   .headerContent {
-    position: absolute;
-    width: 100%;
-    top: 3%;
+    //position: absolute;
+    //width: 100%;
+    //top: 3%;
     h1 {
       font-size: 50px;
       font-weight: bold;
@@ -177,22 +180,22 @@ h1, h2, h3, h4, h5 {
       text-shadow: 3px 1px 9px #000, 4px 7px 9px #69ff23
     }
   }
-  img {
-    position: relative;
-    left: -13%;
-    @include medium {
-      width: 100%;
-      left: 0;
-    }
-  }
+  //img {
+  //  position: relative;
+  //  left: -13%;
+  //  @include medium {
+  //    width: 100%;
+  //    left: 0;
+  //  }
+  //}
   .searchContainer {
     text-align: center;
     padding: 5px;
     background: #35e474;
     opacity: 0.9;
-    position: absolute;
-    width: 100%;
-    bottom: 1%;
+    //position: absolute;
+    //width: 100%;
+    //bottom: 1%;
     @include small {
       padding: 11px;
     }
